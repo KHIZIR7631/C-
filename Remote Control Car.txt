@@ -1,0 +1,70 @@
+using System;
+
+class RemoteControlCar
+{
+    private int _direction;
+    private bool _isMovingForward;
+
+    public RemoteControlCar()
+    {
+        _direction = 0;
+        _isMovingForward = true;
+    }
+
+    public void TurnLeft()
+    {
+        _direction -= 90;
+        if (_direction < 0)
+            _direction += 360;
+    }
+
+    public void TurnRight()
+    {
+        _direction += 90;
+        if (_direction >= 360)
+            _direction -= 360;
+    }
+
+    public void MoveForward()
+    {
+        _isMovingForward = true;
+    }
+
+    public void MoveBackward()
+    {
+        _isMovingForward = false;
+    }
+
+    public void PrintStatus()
+    {
+        Console.WriteLine("Direction: " + GetDirection() + ", Moving " + (IsMovingForward() ? "forward" : "backward"));
+    }
+
+    private int GetDirection()
+    {
+        return _direction;
+    }
+
+    private bool IsMovingForward()
+    {
+        return _isMovingForward;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        RemoteControlCar car1 = new RemoteControlCar();
+        car1.PrintStatus();
+
+        car1.TurnLeft();
+        car1.MoveForward();
+        car1.PrintStatus();
+
+        car1.TurnRight();
+        car1.MoveBackward();
+        car1.PrintStatus();
+    }
+}
+
